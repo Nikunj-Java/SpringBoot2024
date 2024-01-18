@@ -37,6 +37,11 @@ stage('Docker Swarm'){
         sh "sudo docker service create  -p 8082:8083 --name myservice $containerName:${env.BUILD_NUMBER}"
         echo "sudo Docker Swarm Initiated"
     }
+	    stage ('Notifications') {
+    mail body: "Project Execution Completed with status : " + currentBuild.result ,
+                     subject: 'Project Execution Notification',
+                     to: 'abc@abc.com'
+     }
   }
 
 
