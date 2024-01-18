@@ -8,15 +8,11 @@ node {
     checkout scm
   }
 
-     stage('Maven Clean'){
-        sh "mvn clean"
+     stage('Jar File'){
+        sh "mvn clean install"
     }
 
-    stage('Maven Install'){
-        sh "mvn install"
-    }
-
-    
+       
 
     stage('Image Build'){
         sh "sudo docker build -t $containerName:${env.BUILD_NUMBER} --pull --no-cache ."
